@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <EditText
+        android:id="@+id/calculation"
+        android:layout_width="match_parent"
+        android:layout_height="95dp"
+        android:layout_marginTop="5dp"
+        android:textAlignment="textEnd"
+        android:textColor="#3316DA"
+        android:textSize="56dp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:gravity="end" />
+    <EditText
+        android:id="@+id/result"
+        android:layout_width="match_parent"
+        android:layout_height="95dp"
+        android:layout_marginTop="5dp"
+        android:textAlignment="textEnd"
+        android:textColor="#6D16DA"
+        android:textSize="56dp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/calculation"
+        android:gravity="end" />
+    <Button
+        android:id="@+id/btnAC"
+        android:layout_width="200dp"
+        android:layout_height="80dp"
+        android:backgroundTint="#6D16DA"
+        android:textColor="#ffffff"
+        android:text="Clear"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/result"
+        android:layout_marginLeft="5dp" />
+    <Button
+        android:id="@+id/btnDel"
+        android:layout_width="200dp"
+        android:layout_height="80dp"
+        android:backgroundTint="#6D16DA"
+        android:textColor="#ffffff"
+        android:text="Backspace"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        app:layout_constraintLeft_toRightOf="@id/btnAC"
+        app:layout_constraintTop_toTopOf="@id/btnAC"
+        android:layout_marginLeft="5dp" />
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
