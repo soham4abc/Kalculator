@@ -13,6 +13,8 @@ public class MainActivity extends AppCompatActivity {
     private String curr,res;
     private Button btn0,btn1,btn2,btn3,btn4,btn5,btn6,btn7,btn8,btn9,btnMul,btnDiv,btnSub,btnAdd,btnDec,btnDel,btnAC;
     private  boolean dot_inserted,operator_inserted;
+    private Button btnEqual;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
         btnAdd=(Button) findViewById(R.id.btnAdd);
         btnDel=(Button) findViewById(R.id.btnDel);
         btnAC=(Button) findViewById(R.id.btnAC);
+        btnDec=(Button) findViewById(R.id.btnDec);
+        btnEqual=(Button) findViewById(R.id.btnEqual);
 
         btn0.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,10 +115,11 @@ public class MainActivity extends AppCompatActivity {
                 displayOne();
             }
         });
-       /* btnDec.setOnClickListener(new View.OnClickListener() {
+
+        btnDec.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //emptycheck
+
                 if(curr.isEmpty()){
                     curr="0.";
                     dot_inserted=true;
@@ -124,10 +129,16 @@ public class MainActivity extends AppCompatActivity {
                     dot_inserted=true;
                 }
 
+
+
                 displayOne();
+
+
             }
         });
-        */
+
+
+
         btnAC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -136,6 +147,112 @@ public class MainActivity extends AppCompatActivity {
                 displayTwo();
             }
         });
+
+        btnDel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                backspace();
+                displayOne();
+            }
+        });
+        btnDiv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dot_inserted=false;
+                if(!curr.isEmpty()){
+                   if(curr.substring(curr.length()-1,curr.length()).equals(("."))){
+                       backspace();
+                   }
+                   if(operator_inserted==false){
+                       curr=curr+" / ";
+                       operator_inserted=true;
+
+                   }
+                   displayOne();
+                }
+
+            }
+        });
+        btnMul.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dot_inserted=false;
+                if(!curr.isEmpty()){
+                    if(curr.substring(curr.length()-1,curr.length()).equals(("."))){
+                        backspace();
+                    }
+                    if(operator_inserted==false){
+                        curr=curr+" * ";
+                        operator_inserted=true;
+
+                    }
+                    displayOne();
+                }
+
+            }
+        });
+        btnSub.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dot_inserted=false;
+                if(!curr.isEmpty()){
+                    if(curr.substring(curr.length()-1,curr.length()).equals(("."))){
+                        backspace();
+                    }
+                    if(operator_inserted==false){
+                        curr=curr+" - ";
+                        operator_inserted=true;
+
+                    }
+                    displayOne();
+                }
+
+            }
+        });
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dot_inserted=false;
+                if(!curr.isEmpty()){
+                    if(curr.substring(curr.length()-1,curr.length()).equals(("."))){
+                        backspace();
+                    }
+                    if(operator_inserted==false){
+                        curr=curr+" + ";
+                        operator_inserted=true;
+
+                    }
+                    displayOne();
+                }
+
+            }
+        });
+        btnEqual.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!(curr.substring(curr.length()-1,curr.length()).equals(" "))&&(operator_inserted=true)){
+
+                    String[] tokens =curr.split(" ");
+                    switch (tokens[1].charAt(0)){
+                        case '+':
+                            res=Double.toString (Double.parseDouble(tokens[0])+ Double.parseDouble(tokens[2]));
+                            break;
+                        case '-':
+                            res=Double.toString (Double.parseDouble(tokens[0]) - Double.parseDouble(tokens[2]));
+                            break;
+                        case '/':
+                            res=Double.toString (Double.parseDouble(tokens[0])/ Double.parseDouble(tokens[2]));
+                            break;
+                        case '*':
+                            res=Double.toString (Double.parseDouble(tokens[0])* Double.parseDouble(tokens[2]));
+                            break;
+                    }
+                    displayTwo();
+                }
+
+            }
+        });
+
 
 
     }
@@ -156,10 +273,16 @@ public class MainActivity extends AppCompatActivity {
         operator_inserted=false;
     }
     public void backspace(){
-        if(curr.isEmpty()){
+        if(!curr.isEmpty()){
+            if(curr.substring(curr.length()-1,curr.length()).equals("."))
+                dot_inserted=false;
+            if((curr.substring(curr.length()-1,curr.length()).equals(" "))) {
+                operator_inserted = false;
+                curr=curr.substring(0,curr.length()-2);
+            }
+            }
             curr=curr.substring(0,curr.length()-1);
 
         }
 
     }
-}
